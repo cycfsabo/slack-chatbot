@@ -9,10 +9,14 @@ def lambda_handler(event, context):
         name = event["queryStringParameters"]["text"]
         state = get_state_instance(instances[name])
         message = "State of " + name + ": " + state
-        return message
+        return {
+            'body': message
+            }
     except Exception as e:
         message = 'An exception occurred: ' + format(e)
-        return message
+        return {
+            'body': message
+            }
 
 def get_state_instance(instanceId):
     response = client.describe_instances(
