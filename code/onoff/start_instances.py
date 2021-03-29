@@ -17,8 +17,9 @@ def lambda_handler(event, context):
         }
     except Exception as e:
         message = 'An exception occurred: ' + format(e)
-        return message
-
+        return {
+            'body': message
+        }
         
 def list_instances():
     map = {}
