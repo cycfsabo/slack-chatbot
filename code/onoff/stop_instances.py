@@ -7,7 +7,11 @@ def lambda_handler(event, context):
     try:
         instances = list_instances()
         name = event["queryStringParameters"]["text"]
-        stop_instances(instances[name])
+        if name == '':
+            name = 'test14032021'
+            stop_instances(instances[name])
+        else:
+            stop_instances(instances[name])
         message = name + ' is stopped' 
         return {
             'statusCode': 200,
