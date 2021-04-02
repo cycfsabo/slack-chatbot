@@ -9,7 +9,11 @@ def lambda_handler(event, context):
         name = event["queryStringParameters"]["text"]
         #body = json.loads(event["body"])
         #name = body["text"]
-        start_instances(instances[name])
+        if name == '':
+            name = 'test14032021'
+            start_instances(instances[name])
+        else:
+            start_instances(instances[name])
         message = name + ' is started!' 
         return {
             'statusCode': 200,
@@ -20,6 +24,7 @@ def lambda_handler(event, context):
         return {
             'body': message
         }
+
         
 def list_instances():
     map = {}
